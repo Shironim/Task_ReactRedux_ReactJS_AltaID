@@ -1,0 +1,32 @@
+.card {
+  margin-top: 2rem;
+}
+
+.card_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #000;
+}
+
+.todo_list {
+  display: flex;
+}
+
+input[type="checkbox"] {
+  align-self: center;
+}
+
+.uncheck {
+  align-self: center;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+.check {
+  align-self: center;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  text-decoration: line-through;
+  font-style: italic;
+}
