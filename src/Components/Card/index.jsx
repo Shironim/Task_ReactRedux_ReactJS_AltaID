@@ -1,24 +1,17 @@
 import React from 'react'
 import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { hapusTodo } from '../../store/TodoSlice';
-const Card = ({ listTodo, setListTodo }) => {
+import { hapusTodo, checkedTodo } from '../../store/TodoSlice';
+const Card = () => {
+
   const dispatch = useDispatch();
 
   const todos = useSelector((state) => state.TodoList.todos);
-  
+
   const handleChecked = (value, key) => {
-    const newListTodo = listTodo.map((todo, todoIdx) => {
-      if (todoIdx === key) {
-        return {
-          ...todo,
-          checked: value,
-        };
-      }
-      return todo;
-    });
-    setListTodo(newListTodo);
+    dispatch(checkedTodo([value, key]));
   };
+  console.log("ini todos", todos);
 
   return (
     <div className={styles.card}>

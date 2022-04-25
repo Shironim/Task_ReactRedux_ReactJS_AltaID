@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from './styles.module.css';
-
+import { useDispatch } from 'react-redux';
+import { tambahTodo } from '../../store/TodoSlice';
 const Form = ({ inputs, setInputs }) => {
+
+  const dispact = useDispatch();
 
   const handleInput = (value, key) => {
     const newInputs = { ...inputs };
@@ -13,6 +16,8 @@ const Form = ({ inputs, setInputs }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    dispact(tambahTodo(inputs.inputTodo));
 
     setInputs({
       inputTodo: "",

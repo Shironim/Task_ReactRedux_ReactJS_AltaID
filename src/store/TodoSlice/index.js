@@ -2,19 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialValue = [
   {
-    todo: "aku",
+    todo: "Uji 1",
     checked: false,
   },
   {
-    todo: "Kamu",
+    todo: "Uji 2",
     checked: false,
   },
   {
-    todo: "Diaaku",
+    todo: "Coba 1",
     checked: true,
   },
   {
-    todo: "Mereka",
+    todo: "Coba 2",
     checked: true,
   },
 ];
@@ -27,9 +27,10 @@ const TodoSlice = createSlice({
   reducers: {
     tambahTodo: (state, action) => {
       const newTodo = {
-        ...action.payload
+        todo: action.payload,
+        checked: false,
       }
-      state.todos = [...state.todos, newTodo]
+      state.todos = [...state.todos, newTodo];
     },
     hapusTodo: (state, action) => {
       state.todos = state.todos.filter((todo, todoIdx) => {
@@ -42,9 +43,22 @@ const TodoSlice = createSlice({
         return false;
       })
     },
+    checkedTodo: (state, action) => {
+      console.log('ini action', action.payload);
+      state.todos = state.todos.map((todo, todoIdx) => {
+        if (todoIdx === action.payload[1]) {
+          // return card yang dipilih
+          return {
+            ...todo,
+            checked: action.payload[0],
+          };
+        }
+        return todo;
+      });
+    }
   }
 });
 
-export const { tambahTodo, hapusTodo } = TodoSlice.actions;
+export const { tambahTodo, hapusTodo, checkedTodo } = TodoSlice.actions;
 
 export default TodoSlice.reducer;
